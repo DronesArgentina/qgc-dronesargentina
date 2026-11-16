@@ -231,7 +231,7 @@ Rectangle {
     }
 
     function showParametersPanel() {
-        showPanel("parameters", "qrc:/qml/QGroundControl/VehicleSetup/SetupParameterEditor.qml")
+        // showPanel("parameters", "qrc:/qml/QGroundControl/VehicleSetup/SetupParameterEditor.qml")
     }
 
     function showVehicleComponentPanel(vehicleComponent) {
@@ -585,10 +585,11 @@ Rectangle {
                 ConfigButton {
                     id:                 parametersButton
                     objectName:         "vehicleConfig_parametersButton"
-                    visible:            QGroundControl.multiVehicleManager.parameterReadyVehicleAvailable &&
+                    /*visible:            QGroundControl.multiVehicleManager.parameterReadyVehicleAvailable &&
                                         !_activeVehicle.usingHighLatencyLink &&
                                         _corePlugin.showAdvancedUI &&
-                                        vehicleConfigView._searchQuery.trim() === ""
+                                        vehicleConfigView._searchQuery.trim() === ""*/
+                    visible:            false
                     text:               qsTr("Parameters")
                     Layout.fillWidth:   true
                     icon.source:        "/qmlimages/subMenuButtonImage.png"
