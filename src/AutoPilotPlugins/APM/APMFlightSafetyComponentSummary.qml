@@ -23,6 +23,7 @@ Item {
 
         VehicleSummaryRow {
             labelText: qsTr("Arming Checks:")
+            visible: false
             valueText: {
                 if (_armingCheckFact) {
                     return _armingCheckFact.value & 1 ? qsTr("Enabled") : qsTr("Some disabled")

@@ -64,7 +64,7 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
         if (_vehicle->parameterManager()->parametersReady()) {
             _airframeComponent = new APMAirframeComponent(_vehicle, this);
             _airframeComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_airframeComponent)));
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_airframeComponent)));
 
             if (_vehicle->supports()->radio()) {
                 _radioComponent = new APMRadioComponent(_vehicle, this);
@@ -76,7 +76,9 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
             if (!_vehicle->sub() || (_vehicle->versionCompare(3, 5, 0) < 0)) {
                 _flightModesComponent = new APMFlightModesComponent(_vehicle, this);
                 _flightModesComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_flightModesComponent)));
+
+                // se quita fligth modes (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_flightModesComponent)));
             }
 
             _sensorsComponent = new APMSensorsComponent(_vehicle, this);
@@ -91,26 +93,30 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
 
             _powerComponent = new APMPowerComponent(_vehicle, this);
             _powerComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_powerComponent)));
+            // se quita Power (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_powerComponent)));
 
             // ESC page is blank without the motor PWM params (e.g. fixed-wing Plane)
             if (_vehicle->parameterManager()->parameterExists(-1, QStringLiteral("MOT_PWM_TYPE")) ||
                 _vehicle->parameterManager()->parameterExists(-1, QStringLiteral("Q_M_PWM_TYPE"))) {
                 _escComponent = new APMESCComponent(_vehicle, this);
                 _escComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_escComponent)));
+                // se quita ESC (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_escComponent)));
             }
 
             if (!_vehicle->sub() || (_vehicle->versionCompare(3, 5, 3) >= 0)) {
                 _motorComponent = new APMMotorComponent(_vehicle, this);
                 _motorComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_motorComponent)));
+                // se quita Motors (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_motorComponent)));
             }
 
             if (_vehicle->parameterManager()->parameterExists(-1, QStringLiteral("SERVO1_MIN"))) {
                 _servoComponent = new APMServoComponent(_vehicle, this);
                 _servoComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_servoComponent)));
+                // se quita Servo Outputs (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_servoComponent)));
             }
 
             _flightSafetyComponent = new APMFlightSafetyComponent(_vehicle, this);
@@ -119,14 +125,16 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
 
             _failsafesComponent = new APMFailsafesComponent(_vehicle, this);
             _failsafesComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_failsafesComponent)));
+            // se quita failsafes (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_failsafesComponent)));
 
 #ifdef QT_DEBUG
             if ((qobject_cast<ArduCopterFirmwarePlugin*>(_vehicle->firmwarePlugin()) || qobject_cast<ArduRoverFirmwarePlugin*>(_vehicle->firmwarePlugin())) &&
                     _vehicle->parameterManager()->parameterExists(-1, QStringLiteral("FOLL_ENABLE"))) {
                 _followComponent = new APMFollowComponent(_vehicle, this);
                 _followComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_followComponent)));
+                // se quita Follow Me (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_followComponent)));
             }
 #endif
 
@@ -139,18 +147,21 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
             if (!_vehicle->sub()) {
                 _tuningComponent = new APMTuningComponent(_vehicle, this);
                 _tuningComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_tuningComponent)));
+                // se quita Tuning (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_tuningComponent)));
             }
 
             if (_vehicle->multiRotor()) {
                 _advancedTuningCopterComponent = new APMAdvancedTuningCopterComponent(_vehicle, this);
                 _advancedTuningCopterComponent->setupTriggerSignals();
-                _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_advancedTuningCopterComponent)));
+                // se quita Tuning advanced (dronesargentina)
+                //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_advancedTuningCopterComponent)));
             }
 
             _gimbalComponent = new APMGimbalComponent(_vehicle, this);
             _gimbalComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_gimbalComponent)));
+            // se quita Gimbals (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_gimbalComponent)));
 
             if (_vehicle->sub()) {
                 _lightsComponent = new APMLightsComponent(_vehicle, this);
@@ -173,19 +184,23 @@ const QVariantList &APMAutoPilotPlugin::vehicleComponents()
 
             _loggingComponent = new APMLoggingComponent(_vehicle, this);
             _loggingComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_loggingComponent)));
+            // se quita Logging (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_loggingComponent)));
 
             _apmRemoteSupportComponent = new APMRemoteSupportComponent(_vehicle, this);
             _apmRemoteSupportComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_apmRemoteSupportComponent)));
+            // se quita Remote Support (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_apmRemoteSupportComponent)));
 
             _joystickComponent = new JoystickComponent(_vehicle, this, this);
             _joystickComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_joystickComponent)));
+            // se quita Joystick (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_joystickComponent)));
 
             _scriptingComponent = new ScriptingComponent(_vehicle, this, this);
             _scriptingComponent->setupTriggerSignals();
-            _components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_scriptingComponent)));
+            // se quita Scripting (dronesargentina)
+            //_components.append(QVariant::fromValue(qobject_cast<VehicleComponent*>(_scriptingComponent)));
         } else {
             qCWarning(APMAutoPilotPluginLog) << "Call to vehicleComponents prior to parametersReady";
         }

@@ -341,37 +341,6 @@
                     "showWhen": "_fenceEnabled && _fenceActionIsRtl"
                 }
             ]
-        },
-        {
-            "title": "Arming Checks",
-            "keywords": [
-                "arming",
-                "pre-arm",
-                "preflight",
-                "safety check"
-            ],
-            "controls": [
-                {
-                    "control": "label",
-                    "label": "Warning: Skipping arming checks can lead to loss of Vehicle control.",
-                    "warning": true
-                },
-                {
-                    "param": "ARMING_CHECK",
-                    "label": "Arming checks",
-                    "control": "bitmask",
-                    "optional": true,
-                    "firstEntryIsAll": true,
-                    "showWhen": "_armingCheck"
-                },
-                {
-                    "param": "ARMING_SKIPCHK",
-                    "label": "Skip arming checks",
-                    "control": "bitmask",
-                    "optional": true,
-                    "showWhen": "!_armingCheck && _armingSkipCheck"
-                }
-            ]
         }
     ]
 }
