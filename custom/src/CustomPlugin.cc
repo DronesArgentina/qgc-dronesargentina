@@ -12,6 +12,8 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlFile>
 
+#include <QtCore/QTimer> // dronesargentina, para ocultar advanced mode
+
 QGC_LOGGING_CATEGORY(CustomLog, "Custom.CustomPlugin")
 
 Q_APPLICATION_STATIC(CustomPlugin, _customPluginInstance);
@@ -47,10 +49,32 @@ QGCCorePlugin *CustomPlugin::instance()
     return _customPluginInstance();
 }
 
+/*
 void CustomPlugin::_advancedChanged(bool changed)
 {
     // Firmware Upgrade page is only show in Advanced mode
     emit _options->showFirmwareUpgradeChanged(changed);
+}
+*/
+
+void CustomPlugin::_advancedChanged(bool changed)
+{
+    if (changed) {
+        // Advanced Mode bloqueado en esta version: se vuelve a desactivar
+        QTimer::singleShot(0, this, [this]() {
+            _showAdvancedUI = false;
+            emit showAdvancedUIChanged(false);
+        });
+        return;
+    }
+
+    // Firmware Upgrade page is only show in Advanced mode
+    emit _options->showFirmwareUpgradeChanged(changed);
+}
+
+QString CustomPlugin::showAdvancedUIMessage() const
+{
+    return tr("El modo avanzado no está disponible en esta versión.");
 }
 
 void CustomPlugin::registerCustomSettings(SettingsManager *settingsManager)

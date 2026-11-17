@@ -1,23 +1,24 @@
 #pragma once
 
-#include "PX4AutoPilotPlugin.h"
+#include "APMAutoPilotPlugin.h"
 
 class Vehicle;
 
-class CustomAutoPilotPlugin : public PX4AutoPilotPlugin
+/// Plugin de autopiloto para ArduCopter. Toma la lista completa de componentes
+/// de APMAutoPilotPlugin y muestra solo los de la lista blanca.
+class CustomAutoPilotPlugin : public APMAutoPilotPlugin
 {
     Q_OBJECT
 
 public:
     explicit CustomAutoPilotPlugin(Vehicle *vehicle, QObject *parent = nullptr);
 
-    /// This allows us to hide most Vehicle Setup pages unless we are in Advanced Mmode
     const QVariantList &vehicleComponents() final;
 
 private slots:
-    /// This signals that when Advanced Mode changes the list of Vehicle Settings page also changed
+    /// Al entrar o salir del Advanced Mode cambia la lista de componentes
     void _advancedChanged(bool advanced);
 
 private:
-    QVariantList _components;
+    QVariantList _filteredComponents;
 };

@@ -85,6 +85,8 @@ public:
     QList<PlanCreator *> planCreators(PlanMasterController *planMasterController) final;
     /// Registers the CustomSettings group so the generated Custom settings page can access it.
     void registerCustomSettings(SettingsManager *settingsManager) final;
+    QString showAdvancedUIMessage() const final;
+
 
 private slots:
     void _advancedChanged(bool advanced);
