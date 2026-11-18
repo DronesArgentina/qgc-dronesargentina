@@ -6,8 +6,11 @@
 # ----------------------------------------------------------------------------
 # Application Branding
 # ----------------------------------------------------------------------------
-set(QGC_APP_NAME "Custom-QGroundControl" CACHE STRING "App Name" FORCE)
-set(QGC_ANDROID_PACKAGE_NAME "org.mavlink.customqgroundcontrol" CACHE STRING "Android package identifier" FORCE)
+# dronesargentina: nombre de la app. Se usa tambien como nombre del target de
+# CMake y del ejecutable, por eso va sin espacios.
+set(QGC_APP_NAME "DronesArgentinaGS" CACHE STRING "App Name" FORCE)
+# dronesargentina: identificador de Android. No cambiarlo una vez distribuida la app.
+set(QGC_ANDROID_PACKAGE_NAME "ar.com.dronesargentina.gs" CACHE STRING "Android package identifier" FORCE)
 
 # ----------------------------------------------------------------------------
 # Custom Icons and Graphics
@@ -37,10 +40,7 @@ endif()
 # Feature Set Customization
 # ----------------------------------------------------------------------------
 
-# Single flight stack UI: only register the custom PX4-based plugin factory.
-# All firmware plugin code is always compiled; UI adapts at runtime via
-# FirmwarePluginManager::supportedFirmwareClasses().
+# dronesargentina: solo se registra el factory propio (ArduCopter).
+# Los factories originales de ArduPilot y PX4 quedan desactivados.
 set(QGC_DISABLE_APM_PLUGIN_FACTORY ON CACHE BOOL "Disable APM Plugin Factory" FORCE)
-
-# Implement custom PX4 plugin factory
 set(QGC_DISABLE_PX4_PLUGIN_FACTORY ON CACHE BOOL "Disable PX4 Plugin Factory" FORCE)

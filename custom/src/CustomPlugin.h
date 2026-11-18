@@ -85,6 +85,8 @@ public:
     QList<PlanCreator *> planCreators(PlanMasterController *planMasterController) final;
     /// Registers the CustomSettings group so the generated Custom settings page can access it.
     void registerCustomSettings(SettingsManager *settingsManager) final;
+
+    // dronesargentina: mensaje propio de Advanced Mode
     QString showAdvancedUIMessage() const final;
 
 

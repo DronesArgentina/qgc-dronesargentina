@@ -49,6 +49,8 @@ QGCCorePlugin *CustomPlugin::instance()
     return _customPluginInstance();
 }
 
+
+// dronesargentina: Advanced Mode bloqueado sobre cada una
 /*
 void CustomPlugin::_advancedChanged(bool changed)
 {
@@ -57,6 +59,8 @@ void CustomPlugin::_advancedChanged(bool changed)
 }
 */
 
+
+// dronesargentina: Advanced Mode bloqueado sobre cada una
 void CustomPlugin::_advancedChanged(bool changed)
 {
     if (changed) {
@@ -72,6 +76,7 @@ void CustomPlugin::_advancedChanged(bool changed)
     emit _options->showFirmwareUpgradeChanged(changed);
 }
 
+// dronesargentina: Advanced Mode bloqueado sobre cada una
 QString CustomPlugin::showAdvancedUIMessage() const
 {
     return tr("El modo avanzado no está disponible en esta versión.");

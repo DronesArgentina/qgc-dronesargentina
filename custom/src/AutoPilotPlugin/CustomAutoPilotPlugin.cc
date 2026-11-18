@@ -4,6 +4,8 @@
 
 #include <QtCore/QStringList>
 
+// dronesargentina customizacion componentes visibles
+
 // Componentes de Configure visibles (nombre de la clase C++).
 // Cualquier componente que no este en esta lista queda oculto.
 static const QStringList kVisibleComponents = {
