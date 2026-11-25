@@ -27,8 +27,11 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/${QGC_CUSTOM_DIR}/res/icons/custom_qgroundcontrol
 endif()
 
 # Windows Installer Header
+# dronesargentina: NSIS necesita la ruta con barras de Windows (\) para el encabezado
 if(EXISTS "${CMAKE_SOURCE_DIR}/${QGC_CUSTOM_DIR}/deploy/windows/installheader.bmp")
-    set(QGC_WINDOWS_INSTALL_HEADER_PATH "${CMAKE_SOURCE_DIR}/${QGC_CUSTOM_DIR}/deploy/windows/installheader.bmp" CACHE FILEPATH "Windows Install Header Path" FORCE)
+    file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/${QGC_CUSTOM_DIR}/deploy/windows/installheader.bmp" _dronesarg_header)
+    #set(QGC_WINDOWS_INSTALL_HEADER_PATH "${_dronesarg_header}" CACHE FILEPATH "Windows Install Header Path" FORCE)
+    set(QGC_WINDOWS_INSTALL_HEADER_PATH "${_dronesarg_header}" CACHE STRING "Windows Install Header Path" FORCE)
 endif()
 
 # Windows Application Icon
