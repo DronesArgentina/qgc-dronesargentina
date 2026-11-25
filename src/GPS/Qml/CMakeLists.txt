@@ -6,6 +6,10 @@
 
 qt_add_library(GPSModule STATIC)
 
+# dronesargentina: qmlcachegen de Qt 6.12 genera C++ invalido para este archivo en Release (MSVC).
+# Se ejecuta con el motor de JavaScript, igual que en Debug.
+set_source_files_properties(GPSReceiverSerialPort.qml PROPERTIES QT_QML_SKIP_CACHEGEN TRUE)
+
 qt_add_qml_module(
     GPSModule
     URI QGroundControl.GPS
